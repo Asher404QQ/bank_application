@@ -33,5 +33,11 @@
     <input type="number" name="balance" placeholder="Balance" min="0" step="0.01"><br/>
     <input type="submit" value="Create"><br/>
 </form>
+<c:if test="${requestScope.accountExistsError}" var="true">
+    <div style="color: red">Такой пользователь уже существует</div>
+</c:if>
+<c:if test="${requestScope.nullError}" var="true">
+    <div style="color: red">Поле должно быть заполнено</div>
+</c:if>
 </body>
 </html>

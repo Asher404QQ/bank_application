@@ -27,7 +27,7 @@ public class HelloServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("accounts", repository);
+        req.setAttribute("accounts", repository.values());
         req.getRequestDispatcher("/view/index.jsp").forward(req, resp);
     }
 

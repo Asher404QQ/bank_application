@@ -1,5 +1,4 @@
-<%@ page import="java.util.Map" %>
-<%@ page import="ru.kors.model.Account" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Asher
   Date: 05.12.2023
@@ -7,30 +6,24 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <html>
 <head>
     <title>Hello</title>
 </head>
 <body>
-<%
-    Map<String, Account> accounts = (Map<String, Account>) request.getAttribute("accounts");
-%>
 <h2>Все пользователи:</h2>
 <table>
     <tr>
         <th>Account name</th>
         <th>Balance</th>
     </tr>
-    <%
-        for (var account : accounts.entrySet()) {
-    %>
-    <tr>
-        <td><%=account.getValue().getName()%></td>
-        <td><%=account.getValue().getBalance()%></td>
-    </tr>
-    <%
-        }
-    %>
+    <c:forEach items="${requestScope.accounts}" var="account">
+        <tr>
+            <td>${account.name}</td>
+            <td>${account.balance}</td>
+        </tr>
+    </c:forEach>
 </table>
 <hr/>
 <h2>Создание нового пользователя:</h2>

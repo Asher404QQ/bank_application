@@ -8,6 +8,7 @@ import ru.kors.exception.EmptyFieldException;
 import ru.kors.exception.UserIsAlreadyExistsException;
 import ru.kors.service.AccountService;
 import ru.kors.service.impl.MyAccountServiceImpl;
+import ru.kors.util.ObjectFactory;
 
 import java.io.IOException;
 
@@ -15,7 +16,11 @@ public class HelloServlet extends HttpServlet {
     private AccountService service;
     @Override
     public void init() throws ServletException {
-        service = new MyAccountServiceImpl();
+        try {
+            service = ObjectFactory.getInstance().createObject(AccountService.class);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

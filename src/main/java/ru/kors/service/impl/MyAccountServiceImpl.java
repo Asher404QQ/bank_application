@@ -6,6 +6,7 @@ import ru.kors.model.Account;
 import ru.kors.repository.AccountRepository;
 import ru.kors.repository.impl.InMemoryAccountRepositoryImpl;
 import ru.kors.service.AccountService;
+import ru.kors.util.ObjectFactory;
 
 import java.util.Map;
 
@@ -13,7 +14,11 @@ public class MyAccountServiceImpl implements AccountService {
     private AccountRepository repository;
 
     public MyAccountServiceImpl() {
-        repository = new InMemoryAccountRepositoryImpl();
+        try {
+            repository = ObjectFactory.getInstance().createObject(AccountRepository.class);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

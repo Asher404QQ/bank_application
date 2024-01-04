@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import ru.kors.exception.EmptyFieldException;
 import ru.kors.exception.UserIsAlreadyExistsException;
 import ru.kors.service.AccountService;
-import ru.kors.service.impl.MyAccountServiceImpl;
 import ru.kors.util.ObjectFactory;
 
 import java.io.IOException;
@@ -38,7 +37,7 @@ public class HelloServlet extends HttpServlet {
         } catch (UserIsAlreadyExistsException e) {
             req.setAttribute("accountExistsError", "true");
         } catch (EmptyFieldException e) {
-            req.setAttribute("nullError", "true");
+            req.setAttribute("emptyFieldError", "true");
         } finally {
             doGet(req, resp);
         }
